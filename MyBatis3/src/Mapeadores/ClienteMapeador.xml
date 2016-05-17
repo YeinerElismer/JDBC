@@ -17,7 +17,12 @@
             <result property="Codigo" column="tb_ciudad_cod"/>
             <result property="Nombre" column="tb_ciudad_nom"/>
             <result property="Ubicacion" column="tb_ciudad_ubi"/>
+            <association property="oPais" javaType="Entidades.Pais">
+                <id property="Id" column="tb_pais_id"/>
+                <result property="Codigo" column="tb_pais_cod"/>
+                <result property="Nombre" column="tb_pais_nom"/>
             
+        </association>
         </association>
             
     </resultMap>
@@ -32,11 +37,15 @@
         tb_ciudad.tb_ciudad_id,
         tb_ciudad.tb_ciudad_cod,
         tb_ciudad.tb_ciudad_nom,
-        tb_ciudad.tb_ciudad_ubi
+        tb_pais.tb_pais_id,
+        tb_pais.tb_pais_cod,
+        tb_pais.tb_pais_nom
         from tb_cliente
         inner join tb_ciudad on tb_cliente.tb_ciudad_id = tb_ciudad.tb_ciudad_id
+        inner join tb_pais on tb_pais.tb_pais_id = tb_ciudad.tb_pais_id
         where tb_cliente.tb_cliente_nom like #{Nombre}
         order by tb_cliente.tb_cliente_nom asc
+
     </select>
 
 </mapper>
