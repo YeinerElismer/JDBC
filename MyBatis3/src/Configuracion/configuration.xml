@@ -18,7 +18,9 @@
     </environments>
     
     <mappers>
+        <mapper resource = "Mapeadores/PaisMapeador.xml"/>
         <mapper resource = "Mapeadores/CiudadMapeador.xml"/>
+        <mapper resource = "Mapeadores/ClienteMapeador.xml"/>
     </mappers>
     
     </configuration>

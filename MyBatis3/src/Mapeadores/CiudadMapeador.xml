@@ -7,14 +7,23 @@
 
 <mapper namespace = "Ciudad">
     
-    <resultMap id = "mapeoCiudad" type="Entidades.Ciudad">
+    <resultMap id = "MapeoCiudad" type="Entidades.Ciudad">
         <id property  = "Id" column = "tb_ciudad_id"/>
         <result property  = "Codigo" column = "tb_ciudad_cod"/>
         <result property  = "Nombre" column = "tb_ciudad_nom"/>
         <result property  = "Ubicacion" column = "tb_ciudad_ubi"/>
+        <collection property="lCliente" ofType="Entidades.Cliente">
+        <id property  = "Id" column = "tb_cliente_id"/>
+        <result property  = "Codigo" column = "tb_cliente_cod"/>
+        <result property  = "Nombre" column = "tb_cliente_nom"/>
+        <result property  = "Tipo" column = "tb_cliente_tip"/>
+            
+        </collection>
+        
+        
     </resultMap>
     
-    <select id = "SeleccionarCiudad" parameterType ="Integer" resultMap = "mapeoCiudad">
+    <select id = "SeleccionarCiudad" parameterType ="Integer" resultMap = "MapeoCiudad">
         select
         tb_ciudad_id,
         tb_ciudad_cod,
@@ -25,15 +34,20 @@
 
     </select>
 
-    <select id = "SeleccionarCiudades" parameterType ="String" resultMap = "mapeoCiudad">
+    <select id = "SeleccionarCiudades" parameterType ="String" resultMap = "MapeoCiudad">
         select
-        tb_ciudad_id,
-        tb_ciudad_cod,
-        tb_ciudad_nom,
-        tb_ciudad_ubi
+        tb_ciudad.tb_ciudad_id,
+        tb_ciudad.tb_ciudad_cod,
+        tb_ciudad.tb_ciudad_nom,
+        tb_ciudad.tb_ciudad_ubi,
+        tb_cliente.tb_cliente_id,
+        tb_cliente.tb_cliente_cod,
+        tb_cliente.tb_cliente_nom,
+        tb_cliente.tb_cliente_tip
         from tb_ciudad
+        inner join tb_cliente on tb_ciudad.tb_ciudad_id = tb_cliente.tb_cliente_id
         where tb_ciudad_nom like #{Nombre}
-        order by tb_ciudad_nom asc
+        order by tb_ciudad.tb_ciudad_nom asc
     </select>
 
 </mapper>

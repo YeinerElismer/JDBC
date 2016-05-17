@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd"
+>
+
+<mapper namespace = "Cliente">
+    
+    <resultMap id = "MapeoCliente" type="Entidades.Cliente">
+        <id property  = "Id" column = "tb_cliente_id"/>
+        <result property  = "Codigo" column = "tb_cliente_cod"/>
+        <result property  = "Nombre" column = "tb_cliente_nom"/>
+        <result property  = "Tipo" column = "tb_cliente_tip"/>
+        <association property="oCiudad" javaType="Entidades.Ciudad">
+            <id property="Id" column="tb_ciudad_id"/>
+            <result property="Codigo" column="tb_ciudad_cod"/>
+            <result property="Nombre" column="tb_ciudad_nom"/>
+            <result property="Ubicacion" column="tb_ciudad_ubi"/>
+            
+        </association>
+            
+    </resultMap>
+    
+    <select id = "SeleccionarClientes" parameterType ="String" resultMap = "MapeoCliente">
+   
+        select
+        tb_cliente.tb_cliente_id,
+        tb_cliente.tb_cliente_cod,
+        tb_cliente.tb_cliente_nom,
+        tb_cliente.tb_cliente_tip,
+        tb_ciudad.tb_ciudad_id,
+        tb_ciudad.tb_ciudad_cod,
+        tb_ciudad.tb_ciudad_nom,
+        tb_ciudad.tb_ciudad_ubi
+        from tb_cliente
+        inner join tb_ciudad on tb_cliente.tb_ciudad_id = tb_ciudad.tb_ciudad_id
+        where tb_cliente.tb_cliente_nom like #{Nombre}
+        order by tb_cliente.tb_cliente_nom asc
+    </select>
+
+</mapper>

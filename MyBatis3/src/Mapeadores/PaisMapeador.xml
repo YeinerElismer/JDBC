@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd"
+>
+
+<mapper namespace = "Pais">
+    
+    <resultMap id = "MapeoPais" type="Entidades.Pais">
+        <id property  = "Id" column = "tb_pais_id"/>
+        <result property  = "Codigo" column = "tb_pais_cod"/>
+        <result property  = "Nombre" column = "tb_pais_nom"/>
+        <collection property="lCiudad" ofType="Entidades.Ciudad">
+            <id property  = "Id" column = "tb_ciudad_id"/>
+            <result property  = "Codigo" column = "tb_ciudad_cod"/>
+            <result property  = "Nombre" column = "tb_ciudad_nom"/>
+            <collection property="lCliente" ofType="Entidades.Cliente">
+                <id property  = "Id" column = "tb_cliente_id"/>
+                <id property  = "Codigo" column = "tb_cliente_cod"/>
+                <id property  = "Nombre" column = "tb_cliente_nom"/>
+                <id property  = "Tipo" column = "tb_cliente_tip"/>
+            </collection>
+            
+        </collection>
+        
+        
+    </resultMap>
+   
+    <select id = "SeleccionarPaises" parameterType ="String" resultMap = "MapeoPais">
+        select
+        tb_pais.tb_pais_id,
+        tb_pais.tb_pais_cod,
+        tb_pais.tb_pais_nom,
+        tb_ciudad.tb_ciudad_id,
+        tb_ciudad.tb_ciudad_cod,
+        tb_ciudad.tb_ciudad_nom,
+        tb_cliente.tb_cliente_id,
+        tb_cliente.tb_cliente_nom,
+        tb_cliente.tb_cliente_tip
+        from tb_pais
+        inner join tb_ciudad on tb_pais.tb_pais_id = tb_ciudad.tb_pais_id
+        inner join tb_cliente on tb_ciudad.tb_ciudad_id = tb_cliente.tb_cliente_id
+        where tb_ciudad_nom like #{Nombre}
+        order by tb_ciudad.tb_ciudad_nom asc
+    </select>
+
+</mapper>

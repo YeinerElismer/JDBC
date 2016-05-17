@@ -1,33 +1,30 @@
 
 package Entidades;
 
-import java.util.List;
-
 /**
  *
  * @author Oliverco
  */
-public class Ciudad {
+public class Cliente {
     private Integer Id;
     private String Codigo;
     private String Nombre;
-    private Pais oPais;
-    private List<Cliente> lCliente;
-    
+    private String Tipo;
+    private Ciudad oCiudad;
 
-    public Ciudad() {
+    public Cliente() {
     }
 
-    public Ciudad(Integer Id) {
+    public Cliente(Integer Id) {
         this.Id = Id;
     }
 
-    public Ciudad(Integer Id, String Codigo, String Nombre, Pais oPais, List<Cliente> lCliente) {
+    public Cliente(Integer Id, String Codigo, String Nombre, String Tipo, Ciudad oCiudad) {
         this.Id = Id;
         this.Codigo = Codigo;
         this.Nombre = Nombre;
-        this.oPais = oPais;
-        this.lCliente = lCliente;
+        this.Tipo = Tipo;
+        this.oCiudad = oCiudad;
     }
 
     public Integer getId() {
@@ -54,26 +51,26 @@ public class Ciudad {
         this.Nombre = Nombre;
     }
 
-    public Pais getoPais() {
-        return oPais;
+    public String getTipo() {
+        return Tipo;
     }
 
-    public void setoPais(Pais oPais) {
-        this.oPais = oPais;
+    public void setTipo(String Tipo) {
+        this.Tipo = Tipo;
     }
 
-    public List<Cliente> getlCliente() {
-        return lCliente;
+    public Ciudad getoCiudad() {
+        return oCiudad;
     }
 
-    public void setlCliente(List<Cliente> lCliente) {
-        this.lCliente = lCliente;
+    public void setoCiudad(Ciudad oCiudad) {
+        this.oCiudad = oCiudad;
     }
 
-    
     @Override
-    public String toString(){
+    public String toString() {
         return this.Nombre;
     }
+
     
 }
