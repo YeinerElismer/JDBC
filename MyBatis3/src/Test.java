@@ -23,11 +23,11 @@ public class Test {
 ////            
 ////            Ciudad ciudad= (Ciudad) (sqlSession.selectOne("Ciudad.SeleccionarCiudad",4));
 ////            System.out.println("ciudad :"+ciudad.getNombre());
-            
-            List<Cliente> clientes  = sqlSession.selectList("Cliente.SeleccionarClientes","%%");
-            for (int i = 0; i < clientes.size(); i++) {
-                System.out.println(clientes.get(i).getNombre()+" \t\t "+clientes.get(i).getoCiudad().getNombre()+" \t \t\t"+clientes.get(i).getoCiudad().getoPais().getNombre());
-            }
+//            
+//            List<Cliente> clientes  = sqlSession.selectList("Cliente.SeleccionarClientes","%%");
+//            for (int i = 0; i < clientes.size(); i++) {
+//                System.out.println(clientes.get(i).getNombre()+" \t\t "+clientes.get(i).getoCiudad().getNombre()+" \t \t\t"+clientes.get(i).getoCiudad().getoPais().getNombre());
+//            }
             
             //////
             
@@ -58,6 +58,15 @@ public class Test {
 //                    
 //                }
 //            }
+            List<Ciudad> ciudades  = sqlSession.selectList("Ciudad.SeleccionarCiudades","%%");
+            for (int i = 0; i < ciudades.size(); i++) {
+                System.out.println("CIUDAD : "+ciudades.get(i).getNombre());
+                System.out.println("PAIS :"+ciudades.get(i).getoPais().getNombre());
+                for (int j = 0; j < ciudades.get(i).getlCliente().size(); j++) {
+                    System.out.println(ciudades.get(i).getlCliente().get(j).getNombre());
+                }
+            }
+            
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }

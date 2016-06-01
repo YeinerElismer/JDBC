@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mappper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Pais">
+<resultMap id="MapeoPais" type="Entidades.Pais">
+    <id property="Id" column="tb_pais_id"/>
+    <result property="Codigo" column="tb_pais_cod"/>    
+    <result property="Nombre" column="tb_pais_nom"/>
+</resultMap>
+<select id="Seleccionar" parameterType="String" resultMap="MapeoPais">
+    select
+    tb_pais.tb_pais_id,
+    tb_pais.tb_pais_cod,
+    tb_pais.tb_pais_nom,
+    from tb_pais
+    where tb_pais_nom like #{Nombre}
+    order tb_pais_nom asc
+</select>
+</mapper>
