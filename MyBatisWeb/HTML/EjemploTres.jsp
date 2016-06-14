@@ -12,6 +12,7 @@
 </tr>
 <%
 	for(int = i ; i<10;i++){
+		
 		out.write("<tr>");
 		out.write("<td>"+(i+1)+"</td>");
 		out.write("<td>Nombre"+(i+1)+"</td>");

@@ -12,7 +12,7 @@ public class PaisControlador {
     public ModelAndView ListarPaises(@RequestParam(value="txtNumero1") String numero1,@RequestParam(value="txtNumero2") String numero2,@RequestParam(value="cboOperacion") String operacion) {        
         ModelAndView modelAndView = new ModelAndView("calculadora");
         
-        modelAndView.addObject("mensaje",resultado);
+        //modelAndView.addObject("mensaje",resultado);
         
         return modelAndView;
     }    
